@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Clothing Store</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+            padding: 0;
+            background-color: #f4f4f4;
+            background: url(Womens.jpeg) no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        /*purchase button style*/
+        .purchase {
+            width: 100px;
+            height: 30px;
+            background: rgb(0, 169, 0);
+            border: 2px solid rgb(0, 255, 30);
+            outline: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.3em;
+            color: #fff;
+            font-weight: 500;
+            margin-left: 40px;
+            transition: .5s;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 0 20px;
+            background-color: black;
+        }
+
+        .item {
+            border: 1px solid #ccc;
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            /* Ensure button is inside item */
+        }
+
+        .item img {
+            max-width: 100%;
+        }
+
+        .item h2 {
+            margin-top: 0;
+        }
+
+        .item p {
+            margin-bottom: 10px;
+        }
+
+        .item button {
+            float: right;
+            /* Float button to the right */
+            padding: 8px 15px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .add-to-cart {
+            width: 150px;
+            height: 50px;
+            background: rgb(0, 0, 0);
+            border: 2px solid rgb(4, 4, 4);
+            outline: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            color: #fff;
+            font-weight: 200;
+            margin-left: 40px;
+            transition: .5s;
+        }
+
+        .favorites {
+            width: 150px;
+            height: 50px;
+            background: rgb(0, 0, 0);
+            border: 2px solid rgb(4, 4, 4);
+            outline: none;
+            font-size: 1.1em;
+            border-radius: 4px;
+        }
+
+        #cart,
+        #favorites {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+        }
+
+        #total-cost {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Women's Choices</h1>
+    </header>
+    <div class="container">
+        <div class="item">
+            <img src="https://6b137f3a97d7529e2915-d8bcc605c9126326b6e052b253aefb79.ssl.cf2.rackcdn.com/product-blocksquare-2796139-264919-1533957469-375a80ced07f8424190db50169a2245f"
+                alt="Women's Dress">
+            <h2>Women's Dress</h2>
+            <p>$50</p>
+            <button class="add-to-cart" data-name="Women's Dress" data-price="50">Add to Cart</button>
+            <button class="favorites" onclick="addToFavorites('Women\'s Dress')">Add to Favorites</button>
+        </div>
+        <div class="item">
+            <img src="https://ae01.alicdn.com/kf/S3e2ba977a0b0476ebbe0bc1650693b0eZ.jpg_640x640Q90.jpg_.webp"
+                alt="Women's Shoes">
+            <h2>Women's Shoes</h2>
+            <p>$40</p>
+            <button class="add-to-cart" data-name="Women's Shoes" data-price="40">Add to Cart</button>
+            <button class="favorites" onclick="addToFavorites('Women\'s Shoes')">Add to Favorites</button>
+        </div>
+
+        <div class="item">
+            <img src="https://down-br.img.susercontent.com/file/9534c79de0df95bb568481a2265c5541" alt="Women's Dress">
+            <h2>Women's Dress</h2>
+            <p>$50</p>
+            <button class="add-to-cart" data-name="Women's Dress" data-price="50">Add to Cart</button>
+            <button class="favorites" onclick="addToFavorites('Women\'s Dress')">Add to Favorites</button>
+        </div>
+
+        <div class="item">
+            <img src="https://img.kwcdn.com/product/1ea26c5a3c/906e9c1e-c248-4aec-88fd-8dafcfe7064b_800x800.jpeg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/80"
+                alt="Women's Shoes">
+            <h2>Women's Shoes</h2>
+            <p>$40</p>
+            <button class="add-to-cart" data-name="Women's Shoes" data-price="40">Add to Cart</button>
+            <button class="favorites" onclick="addToFavorites('Women\'s Shoes')">Add to Favorites</button>
+        </div>
+
+        <div class="item">
+            <img src="https://down-ph.img.susercontent.com/file/98346676cc844958992b0ddda488557d" alt="Women's Dress">
+            <h2>Women's Dress</h2>
+            <p>$50</p>
+            <button class="add-to-cart" data-name="Women's Dress" data-price="50">Add to Cart</button>
+            <button class="favorites" onclick="addToFavorites('Women\'s Dress')">Add to Favorites</button>
+        </div>
+
+        <div id="favorites">
+            <h2>Favorites</h2>
+            <ul id="favorite-items"></ul>
+        </div>
+
+        <div id="cart">
+            <h2>Cart</h2>
+            <ul id="cart-items"></ul>
+            <p id="total-cost">Total Cost: $0</p>
+            <button class="purchase" onclick="purchase()">Purchase</button>
+        </div>
+
+    </div>
+    <script>
+        // JavaScript Functions
+        let cartItems = [];
+        let favoriteItems = [];
+
+        const addToCartButtons = document.querySelectorAll('.add-to-cart');
+        addToCartButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const itemName = this.getAttribute('data-name');
+                const itemPrice = parseFloat(this.getAttribute('data-price'));
+                addToCart(itemName, itemPrice);
+            });
+        });
+
+        function addToCart(itemName, price) {
+            cartItems.push({ name: itemName, price: price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartList = document.getElementById('cart-items');
+            let totalPrice = 0;
+            cartList.innerHTML = '';
+            cartItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = `${item.name} - $${item.price}`;
+                cartList.appendChild(li);
+                totalPrice += item.price;
+            });
+            document.getElementById('total-cost').textContent = `Total Cost: $${totalPrice}`;
+        }
+
+        function addToFavorites(itemName) {
+            if (!favoriteItems.includes(itemName)) {
+                favoriteItems.push(itemName);
+                updateFavorites();
+            }
+        }
+
+        function updateFavorites() {
+            const favoriteList = document.getElementById('favorite-items');
+            favoriteList.innerHTML = '';
+            favoriteItems.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                favoriteList.appendChild(li);
+            });
+        }
+
+        function purchase() {
+            // Here you can implement purchase functionality
+            alert('Thank you for your purchase!');
+            cartItems = [];
+            updateCart();
+        }
+    </script>
+</body>
+
+</html>
